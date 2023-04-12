@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.mtcoding.productapp_buyer.model.user.UserRepository">
+
+	<select id="findByUsername"
+		resultType="shop.mtcoding.productapp_buyer.model.user.User">
+		SELECT * FROM users WHERE username = #{username}
+	</select>
+
+
+	<select id="findById"
+		resultType="shop.mtcoding.productapp_buyer.model.user.User">
+		SELECT * FROM users WHERE id = #{userId}
+
+	</select>
+
+	<insert id="insert">
+		INSERT INTO users(username, password, role,
+		createdAt)
+		VALUES(#{username}, #{password}, #{role}, now())
+	</insert>
+
+
+	<select id="findAll"
+		resultType="shop.mtcoding.productapp_buyer.model.user.User">
+		SELECT * FROM users ORDER BY id DESC
+	</select>
+
+
+	<update id="update">
+		UPDATE users SET password = #{password}, email =
+		#{email}
+		WHERE id = #{id}
+	</update>
+
+	<delete id="deleteById">
+		DELETE FROM users WHERE id = #{id}
+	</delete>
+
+</mapper>
