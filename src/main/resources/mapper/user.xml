@@ -23,7 +23,7 @@
 
 	<insert id="insert">
 		INSERT INTO user(user_name, user_password, user_email,
-		createdAt)
+		created_at)
 		VALUES(#{userName}, #{userPassword}, #{userEmail}, now())
 	</insert>
 

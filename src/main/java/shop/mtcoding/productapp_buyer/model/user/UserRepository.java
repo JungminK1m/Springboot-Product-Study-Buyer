@@ -4,12 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import shop.mtcoding.productapp_buyer.dto.user.JoinDto;
 import shop.mtcoding.productapp_buyer.dto.user.LoginDto;
 
 @Mapper
 public interface UserRepository {
 
-    public void insert(User user);
+    public void insert(JoinDto joinDto);
 
     public User findById(Integer userId);
 

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import shop.mtcoding.productapp_buyer.dto.user.JoinDto;
 import shop.mtcoding.productapp_buyer.dto.user.LoginDto;
 import shop.mtcoding.productapp_buyer.model.user.User;
 import shop.mtcoding.productapp_buyer.model.user.UserRepository;
@@ -49,6 +50,13 @@ public class UserController {
     @GetMapping("/joinForm")
     public String joinForm() {
         return "user/joinForm";
+    }
+
+    @PostMapping("/join")
+    public String join(JoinDto joinDto) {
+        userRepository.insert(joinDto);
+
+        return "redirect:/";
     }
 
     @GetMapping("/logout")
