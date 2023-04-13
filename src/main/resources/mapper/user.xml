@@ -6,37 +6,42 @@
 
 	<select id="findByUsername"
 		resultType="shop.mtcoding.productapp_buyer.model.user.User">
-		SELECT * FROM users WHERE username = #{username}
+		SELECT * FROM user WHERE user_name = #{userName}
+	</select>
+
+	<select id="findByUsernameAndPassword"
+		resultType="shop.mtcoding.productapp_buyer.model.user.User">
+		SELECT * FROM user WHERE user_name = #{userName} and user_password = #{userPassword}
 	</select>
 
 
 	<select id="findById"
 		resultType="shop.mtcoding.productapp_buyer.model.user.User">
-		SELECT * FROM users WHERE id = #{userId}
+		SELECT * FROM user WHERE user_id = #{userId}
 
 	</select>
 
 	<insert id="insert">
-		INSERT INTO users(username, password, role,
+		INSERT INTO user(user_name, user_password, user_email,
 		createdAt)
-		VALUES(#{username}, #{password}, #{role}, now())
+		VALUES(#{userName}, #{userPassword}, #{userEmail}, now())
 	</insert>
 
 
 	<select id="findAll"
 		resultType="shop.mtcoding.productapp_buyer.model.user.User">
-		SELECT * FROM users ORDER BY id DESC
+		SELECT * FROM user ORDER BY user_id DESC
 	</select>
 
 
 	<update id="update">
-		UPDATE users SET password = #{password}, email =
-		#{email}
-		WHERE id = #{id}
+		UPDATE user SET user_password = #{userPassword}, user_email =
+		#{userEmail}
+		WHERE user_id = #{userId}
 	</update>
 
 	<delete id="deleteById">
-		DELETE FROM users WHERE id = #{id}
+		DELETE FROM user WHERE user_id = #{userId}
 	</delete>
 
 </mapper>

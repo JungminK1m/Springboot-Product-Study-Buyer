@@ -4,18 +4,22 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import shop.mtcoding.productapp_buyer.dto.user.LoginDto;
+
 @Mapper
 public interface UserRepository {
 
-    public void insert(User users);
+    public void insert(User user);
 
-    public User findById(Integer usersId);
+    public User findById(Integer userId);
 
-    public User findByUsername(String username);
+    public User findByUsername(String userName);
+
+    public User findByUsernameAndPassword(LoginDto loginDto);
 
     public List<User> findAll();
 
     public void update(User user);
 
-    public void delete(Integer usersId);
+    public void delete(Integer userId);
 }

@@ -22,7 +22,7 @@
 
     <update id="productQtyUpdate">
         Update product
-		SET product_qty = product_qty-#{ordersCount}
+		SET product_qty = product_qty - #{ordersCount}
 		where product_id = #{productId}
     </update>
 

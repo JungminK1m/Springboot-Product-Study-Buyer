@@ -9,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class User {
 
-    private Integer usersId;
-    private String username;
-    private String password;
-    private String role;
+    private Integer userId;
+    private String userName;
+    private String userPassword;
+    private String userEmail;
     private Timestamp createdAt;
 }
