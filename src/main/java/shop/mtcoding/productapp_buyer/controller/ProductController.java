@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import shop.mtcoding.productapp_buyer.model.product.Product;
 import shop.mtcoding.productapp_buyer.model.product.ProductRepository;
@@ -23,8 +24,11 @@ public class ProductController {
         return "product/productList";
     }
 
-    @GetMapping("/product/1")
-    public String productDetail() {
+    @GetMapping("/product/{productId}")
+    public String productDetail(@PathVariable Integer productId, Model model) {
+        Product product = productRepository.findById(productId);
+        model.addAttribute("product", product);
+
         return "product/productDetail";
     }
 
