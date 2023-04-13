@@ -12,14 +12,16 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:forEach items="${product}" var="p">
                         <tr>
-                            <td>1</td>
-                            <td><a href="#">바나나</a></td>
-                            <td>1000원</td>
-                            <td>50개</td>
+                            <td>${p.productId}</td>
+                            <td><a href="/product/${p.productId}">${p.productName}</a></td>
+                            <td>${p.productPrice}원</td>
+                            <td>${p.productQty}개</td>
                         </tr>
+                    </c:forEach>
                 </tbody>
             </table>
         </div>
 
-    <%@ include file="../layout/footer.jsp" %>
+        <%@ include file="../layout/footer.jsp" %>

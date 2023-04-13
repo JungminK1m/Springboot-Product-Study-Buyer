@@ -16,7 +16,7 @@
 
 	<select id="findAll"
 		resultType="shop.mtcoding.productapp_buyer.model.product.Product">
-		SELECT * FROM product ORDER BY product_id DESC
+		SELECT * FROM product
 	</select>
 
 
