@@ -12,8 +12,8 @@ public class Orders {
     private Integer ordersId;
     private String ordersName;
     private Integer ordersPrice;
-    private Integer ordersCount; // 주문수량
+    private Integer ordersQty;
     private Integer productId;
-    private Integer usersId;
+    private Integer userId;
     private Timestamp createdAt;
 }

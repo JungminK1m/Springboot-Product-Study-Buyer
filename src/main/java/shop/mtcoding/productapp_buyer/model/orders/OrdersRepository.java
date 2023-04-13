@@ -4,10 +4,12 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import shop.mtcoding.productapp_buyer.dto.orders.OrdersDto;
+
 @Mapper
 public interface OrdersRepository {
 
-    public void insert(Orders orders);
+    public void insert(OrdersDto ordersDto, Integer userId);
 
     public Orders findById(Integer ordersId);
 

@@ -12,12 +12,14 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
             </tr>
         </thead>
         <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>바나나</td>
-                    <td>1000원</td>
-                    <td>1개</td>
-                </tr>
+            <c:forEach items="${orderedProduct}" var="op">
+                    <tr>
+                        <td>${op.ordersId}</td>
+                        <td>${op.ordersName}</a></td>
+                        <td>${op.ordersPrice}원</td>
+                        <td>${op.ordersQty}개</td>
+                    </tr>
+            </c:forEach>
         </tbody>
     </table>
 </div>

@@ -13,13 +13,12 @@
 		resultType="shop.mtcoding.productapp_buyer.model.orders.Orders">
 		SELECT *
 		FROM orders 
-		WHERE users_id=#{userId}
+		WHERE user_id=#{userId}
 	</select>
 
 	<insert id="insert">
-		INSERT
-		INTO orders(orders_name, orders_price, orders_count, user_id, product_id, created_at)
-		VALUES(#{ordersName}, #{ordersPrice}, #{ordersCount},#{userId},#{productId}, now())
+		INSERT INTO orders(orders_name, orders_price, orders_qty, product_id, user_id, created_at)
+		VALUES(#{ordersName}, #{ordersPrice}, #{ordersQty}, #{productId}, #{userId}, NOW())
 	</insert>
 
 

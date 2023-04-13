@@ -42,7 +42,7 @@
                                 <a class="nav-link" href="/product">상품목록</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/order">주문확인</a>
+                                <a class="nav-link" href="/orderListForm/${principal.userId}">주문확인</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/logout">로그아웃</a>
