@@ -11,6 +11,7 @@
                 <th>상품명</th>
                 <th>상품가격</th>
                 <th>구매수량</th>
+                <th>가격</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,7 @@
                         <td>${op.ordersName}</a></td>
                         <td>${op.ordersPrice}원</td>
                         <td>${op.ordersQty}개</td>
+                        <td>${op.ordersPrice * op.ordersQty}원</td>
                     </tr>
             </c:forEach>
         </tbody>
