@@ -15,9 +15,9 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach items="${orderedProduct}" var="op">
+            <c:forEach items="${orderedProduct}" var="op" varStatus="status">
                     <tr>
-                        <td>${op.ordersId}</td>
+                        <td>${status.count}</td>
                         <td>${op.ordersName}</a></td>
                         <td>${op.ordersPrice}원</td>
                         <td>${op.ordersQty}개</td>
