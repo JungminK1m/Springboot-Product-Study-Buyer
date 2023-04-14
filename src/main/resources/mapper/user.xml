@@ -4,9 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="shop.mtcoding.productapp_buyer.model.user.UserRepository">
 
-	<select id="findByUsername"
+	<select id="findByUserName"
 		resultType="shop.mtcoding.productapp_buyer.model.user.User">
 		SELECT * FROM user WHERE user_name = #{userName}
+	</select>
+
+	<select id="findByUserEmail"
+		resultType="shop.mtcoding.productapp_buyer.model.user.User">
+		SELECT * FROM user WHERE user_email = #{userEmail}
 	</select>
 
 	<select id="findByUsernameAndPassword"

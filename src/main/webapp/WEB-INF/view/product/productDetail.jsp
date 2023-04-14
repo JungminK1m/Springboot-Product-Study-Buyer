@@ -15,11 +15,11 @@
                             <th>${product.productName}</th>
                         </tr>
                         <tr style="border: 1px solid">
-                            <th style="background-color: rgb(185, 185, 185)">상품명</th>
+                            <th style="background-color: rgb(185, 185, 185)">상품가격</th>
                             <td>${product.productPrice}원</td>
                         </tr>
                         <tr style="border: 1px solid">
-                            <th style="background-color: rgb(185, 185, 185)">상품명</th>
+                            <th style="background-color: rgb(185, 185, 185)">상품재고</th>
                             <td>${product.productQty}개</td>
                         </tr>
                     </table>
