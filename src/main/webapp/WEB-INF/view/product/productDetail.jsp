@@ -3,49 +3,65 @@
 
         <div class="center">
             <div style="margin: 20px;">
-                <form type="submit" action="/order/${productId}" method="post">
+                <form type="submit" action="/order/${productId}" method="post" onsubmit="return qtyCheck();">
                     <%-- productName 과 ordersName 연결하기 --%>
-                    <input name="ordersId" type="hidden" value="${product.productId}">
-                    <input name="ordersName" type="hidden" value="${product.productName}">
-                    <input name="ordersPrice" type="hidden" value="${product.productPrice}">
-                    <table border="1" style="width: 500px; height: 200px; text-align: center;">
+                        <input name="ordersId" type="hidden" value="${product.productId}">
+                        <input name="ordersName" type="hidden" value="${product.productName}">
+                        <input name="ordersPrice" type="hidden" value="${product.productPrice}">
+                        <table border="1" style="width: 500px; height: 200px; text-align: center;">
 
-                        <tr style="border: 1px solid">
-                            <th style="background-color: rgb(185, 185, 185)">상품명</th>
-                            <th>${product.productName}</th>
-                        </tr>
-                        <tr style="border: 1px solid">
-                            <th style="background-color: rgb(185, 185, 185)">상품가격</th>
-                            <td>${product.productPrice}원</td>
-                        </tr>
-                        <tr style="border: 1px solid">
-                            <th style="background-color: rgb(185, 185, 185)">상품재고</th>
-                            <td>${product.productQty}개</td>
-                        </tr>
-                    </table>
+                            <tr style="border: 1px solid">
+                                <th style="background-color: rgb(185, 185, 185)">상품명</th>
+                                <th>${product.productName}</th>
+                            </tr>
+                            <tr style="border: 1px solid">
+                                <th style="background-color: rgb(185, 185, 185)">상품가격</th>
+                                <td>${product.productPrice}원</td>
+                            </tr>
+                            <tr style="border: 1px solid">
+                                <th style="background-color: rgb(185, 185, 185)">상품재고</th>
+                                <td id="productQty">${product.productQty}개</td>
+                            </tr>
+                        </table>
 
-                    <%-- 로그인 했을 때만 구매하기 버튼 뜨게 하기 --%>
-                    <c:choose>
-                        <c:when test="${principal != null}">
-                            <div class="center" style="margin-top: 20px; text-align: center;">
+                        <%-- 로그인 했을 때만 구매하기 버튼 뜨게 하기 --%>
+                            <c:choose>
+                                <c:when test="${principal != null}">
+                                    <div class="center" style="margin-top: 20px; text-align: center;">
 
-                                수량 :<input name="ordersQty" type="number" min="0" class="form-control mb-3"
-                                    style="width: 200px;">
-                                <button
-                                    style="width: 240px; height: 50px; margin-right: 20px; background-color: rgb(255, 210, 199);">구매하기</button>
-                            </div>
-                        </c:when>
+                                        수량 :<input name="ordersQty" type="number" min="0" class="form-control mb-3"
+                                            style="width: 200px;">
+                                        <button
+                                            style="width: 240px; height: 50px; margin-right: 20px; background-color: rgb(255, 210, 199);">구매하기</button>
+                                    </div>
+                                </c:when>
 
-                        <c:otherwise>
-                            <div class="center" style="margin-top: 40px; text-align: center;">
-                                <h5>상품을 구매하시려면 로그인 해주세요😀</h5>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
+                                <c:otherwise>
+                                    <div class="center" style="margin-top: 40px; text-align: center;">
+                                        <h5>상품을 구매하시려면 로그인 해주세요😀</h5>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
                 </form>
 
 
             </div>
         </div>
+
+        <script>
+            function qtyCheck() {
+                let ordersQty = document.getElementsByName("ordersQty");
+                let productQty = document.getElementById("productQty");
+
+                if (ordersQty > productQty) {
+                    alert("재고 수량을 초과하여 구매할 수 없습니다.");
+                    return false;
+                } else if (ordersQty === 0 || ordersQty < 0) {
+                    alert("1개 이상 구매할 수 있습니다.");
+                    return false;
+                }
+                return true;
+            }
+        </script>
 
         <%@ include file="../layout/footer.jsp" %>
