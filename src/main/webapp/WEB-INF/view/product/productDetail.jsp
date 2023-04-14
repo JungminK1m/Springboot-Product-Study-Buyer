@@ -4,7 +4,7 @@
         <div class="center">
             <div style="margin: 20px;">
                 <form type="submit" action="/order/${productId}" method="post">
-                    // productName 과 ordersName 연결하기
+                    <%-- productName 과 ordersName 연결하기 --%>
                     <input name="ordersId" type="hidden" value="${product.productId}">
                     <input name="ordersName" type="hidden" value="${product.productName}">
                     <input name="ordersPrice" type="hidden" value="${product.productPrice}">
@@ -24,7 +24,7 @@
                         </tr>
                     </table>
 
-                    // 로그인 했을 때만 구매하기 버튼 뜨게 하기
+                    <%-- 로그인 했을 때만 구매하기 버튼 뜨게 하기 --%>
                     <c:choose>
                         <c:when test="${principal != null}">
                             <div class="center" style="margin-top: 20px; text-align: center;">

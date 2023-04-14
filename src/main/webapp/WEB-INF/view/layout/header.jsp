@@ -37,7 +37,7 @@
                         <span class="navbar-toggler-icon"></span>
                     </button>
 
-                    // 로그인 안 했을 때 헤더
+                    <%-- 로그인 안 했을 때 헤더 --%>
                     <c:choose>
                        <c:when test="${principal == null}">
                     <div class="collapse navbar-collapse" id="collapsibleNavbar">
@@ -52,8 +52,8 @@
                     </div>
                        </c:when>
                     
-                    // 로그인 했을 때 헤더
-                    
+                    <%-- 로그인 했을 때 헤더 --%>
+
                        <c:otherwise>
                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul class="navbar-nav">
