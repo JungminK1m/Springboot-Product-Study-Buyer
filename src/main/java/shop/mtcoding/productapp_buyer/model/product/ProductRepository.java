@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import shop.mtcoding.productapp_buyer.dto.orders.OrdersDto;
+
 @Mapper
 public interface ProductRepository {
 
@@ -19,5 +21,7 @@ public interface ProductRepository {
 
     public void deleteById(Integer productId);
 
-    // public void productQtyUpdate(OrdersProductDto ordersProductDto);
+    // 구매 시에 product QTY가 차감 되어야 함
+    public void productQtyUpdate(OrdersDto ordersDto);
+
 }

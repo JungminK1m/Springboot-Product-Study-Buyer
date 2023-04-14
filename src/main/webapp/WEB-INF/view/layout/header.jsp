@@ -36,7 +36,26 @@
                         data-bs-target="#collapsibleNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+
+                    // 로그인 안 했을 때 헤더
+                    <c:choose>
+                       <c:when test="${principal == null}">
                     <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/product">상품목록</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">로그인</a>
+                            </li>
+                        </ul>
+                    </div>
+                       </c:when>
+                    
+                    // 로그인 했을 때 헤더
+                    
+                       <c:otherwise>
+                       <div class="collapse navbar-collapse" id="collapsibleNavbar">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="/product">상품목록</a>
@@ -49,6 +68,8 @@
                             </li>
                         </ul>
                     </div>
+                       </c:otherwise>
+                    </c:choose>
                 </div>
             </nav>
         </body>

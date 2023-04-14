@@ -5,7 +5,7 @@ pageEncoding="UTF-8"%> <%@ include file="../layout/header.jsp"%>
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>상품번호</th>
+                <th>주문번호</th>
                 <th>상품명</th>
                 <th>상품가격</th>
                 <th>구매수량</th>

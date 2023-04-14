@@ -18,7 +18,7 @@
 
 	<insert id="insert">
 		INSERT INTO orders(orders_name, orders_price, orders_qty, product_id, user_id, created_at)
-		VALUES(#{ordersName}, #{ordersPrice}, #{ordersQty}, #{productId}, #{userId}, NOW())
+		VALUES(#{ordersDto.ordersName}, #{ordersDto.ordersPrice}, #{ordersDto.ordersQty}, #{ordersDto.productId}, #{userId}, NOW())
 	</insert>
 
 
