@@ -20,7 +20,10 @@
                             </tr>
                             <tr style="border: 1px solid">
                                 <th style="background-color: rgb(185, 185, 185)">상품재고</th>
-                                <td id="productQty">${product.productQty}개</td>
+                                <td>
+                                    <span id="productQty">${product.productQty}</span>
+                                    <span>개</span>
+                                </td>
                             </tr>
                         </table>
 
@@ -50,17 +53,35 @@
 
         <script>
             function qtyCheck() {
-                let ordersQty = document.getElementsByName("ordersQty");
-                let productQty = document.getElementById("productQty");
+                let ordersQty = parseInt(document.getElementsByName("ordersQty")[0].value); // 주문수량 150
+                let productQty = parseInt(document.getElementById("productQty")); //재고수량 95
 
-                if (ordersQty > productQty) {
-                    alert("재고 수량을 초과하여 구매할 수 없습니다.");
-                    return false;
-                } else if (ordersQty === 0 || ordersQty < 0) {
-                    alert("1개 이상 구매할 수 있습니다.");
-                    return false;
+                // 반복 코드 줄이기 위해 return false; 를 변수화
+                let ret = false;
+
+                console.log("orderQty : " + ordersQty);
+                console.log("productQty : " + productQty);
+
+                // 주문 수량이 undefined인지 여부
+                if (ordersQty != null && productQty != null) {
+                    // 주문수량이 존재함
+                    // 주문수량 > 재고
+                    if (ordersQty > productQty) {
+                        alert("재고 수량을 초과하여 구매할 수 없습니다.");
+                    }
+                    // 주문수량 = 0 or 주문수량 < 0
+                    else if (ordersQty === 0 || ordersQty < 0) {
+                        alert("1개 이상 구매할 수 있습니다.");
+                    }
+                    // 그게 아니라면 true로 반환 !ret 이니까 true임
+                    else {
+                        ret = !ret;
+                    }
+                } else {
+                    // 주문수량이 undefined임
+                    alert("주문수량을 입력해 주세요.");
                 }
-                return true;
+                return ret;
             }
         </script>
 
