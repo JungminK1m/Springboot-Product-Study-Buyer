@@ -37,7 +37,7 @@ public class UserController {
             session.setAttribute("principal", userPS);
 
             System.out.println("username : " + userPS.getUserName());
-            System.out.println("username : " + userPS.getUserPassword());
+            System.out.println("password : " + userPS.getUserPassword());
 
             System.out.println("로그인 됨");
             return "redirect:/product";

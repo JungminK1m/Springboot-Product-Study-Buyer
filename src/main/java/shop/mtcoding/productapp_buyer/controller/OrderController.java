@@ -2,15 +2,19 @@ package shop.mtcoding.productapp_buyer.controller;
 
 import java.util.List;
 
+import javax.annotation.Resources;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import shop.mtcoding.productapp_buyer.dto.orders.OrdersDto;
 import shop.mtcoding.productapp_buyer.handler.ex.CustomException;
@@ -19,6 +23,7 @@ import shop.mtcoding.productapp_buyer.model.orders.OrdersRepository;
 import shop.mtcoding.productapp_buyer.model.product.Product;
 import shop.mtcoding.productapp_buyer.model.product.ProductRepository;
 import shop.mtcoding.productapp_buyer.model.user.User;
+import shop.mtcoding.productapp_buyer.model.user.UserRepository;
 
 @Controller
 public class OrderController {
@@ -28,6 +33,9 @@ public class OrderController {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Autowired
     private HttpSession session;
@@ -85,5 +93,34 @@ public class OrderController {
         ordersRepository.insert(ordersDto, userId);
         return "redirect:/orderListForm/" + userId;
 
+    }
+
+    @PostMapping("/orderListForm/delete")
+    public String deleteOrder(Integer ordersId, Integer productId) {
+
+        // 로그인 한 사람만
+        User principal = (User) session.getAttribute("principal");
+        if (principal == null) {
+            throw new CustomException("로그인을 먼저 해 주세요.", HttpStatus.FORBIDDEN);
+        }
+
+        int userId = principal.getUserId();
+
+        System.out.println("userId : " + userId);
+
+        // productRepository.findById(productId);
+        // System.out.println("productId : " + productId);
+
+        // 구매 취소했으니 다시 product Qty 업데이트
+        // productRepository.productQtyReupdate(ordersDto);
+        // System.out.println("재고 : " + ordersDto.getOrdersQty());
+
+        Orders orders = ordersRepository.findById(ordersId);
+        productRepository.productQtyReupdate(orders);
+
+        // 주문 정보 삭제
+        ordersRepository.deleteById(ordersId);
+
+        return "redirect:/orderListForm/" + userId;
     }
 }
