@@ -63,7 +63,7 @@
                 console.log("productQty : " + productQty);
 
                 // 주문 수량이 undefined인지 여부
-                if (ordersQty != null && productQty != null) {
+                if (ordersQty) {
                     // 주문수량이 존재함
                     // 주문수량 > 재고
                     if (ordersQty > productQty) {

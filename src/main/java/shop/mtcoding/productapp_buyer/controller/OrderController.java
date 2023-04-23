@@ -41,7 +41,7 @@ public class OrderController {
     private HttpSession session;
 
     // 구매 목록 페이지
-    @GetMapping("/orderListForm/{userId}")
+    @GetMapping("/orderList/{userId}")
     public String orderListForm(@PathVariable Integer userId, Model model) {
 
         User principal = (User) session.getAttribute("principal");
@@ -60,7 +60,7 @@ public class OrderController {
         List<Orders> ordersList = ordersRepository.findAll(userId);
         model.addAttribute("orderedProduct", ordersList);
 
-        return "order/orderListForm";
+        return "orders/orderList";
     }
 
     // 상품 구매하기
@@ -91,11 +91,11 @@ public class OrderController {
          * 누가 구매했는 지 필요하기 때문에 userId도 같이 insert 해야 함
          */
         ordersRepository.insert(ordersDto, userId);
-        return "redirect:/orderListForm/" + userId;
+        return "redirect:/orderList/" + userId;
 
     }
 
-    @PostMapping("/orderListForm/delete")
+    @PostMapping("/orderList/delete")
     public String deleteOrder(Integer ordersId, Integer productId) {
 
         // 로그인 한 사람만
@@ -121,6 +121,6 @@ public class OrderController {
         // 주문 정보 삭제
         ordersRepository.deleteById(ordersId);
 
-        return "redirect:/orderListForm/" + userId;
+        return "redirect:/orderList/" + userId;
     }
 }
