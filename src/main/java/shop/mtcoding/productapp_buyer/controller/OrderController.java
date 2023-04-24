@@ -33,7 +33,7 @@ public class OrderController {
     private HttpSession session;
 
     // 구매 목록 페이지
-    @GetMapping("/orderList/{userId}")
+    @GetMapping("/orderListForm/{userId}")
     public String orderListForm(@PathVariable Integer userId, Model model) {
 
         User principal = (User) session.getAttribute("principal");
@@ -52,7 +52,7 @@ public class OrderController {
         List<Orders> ordersList = ordersRepository.findAll(userId);
         model.addAttribute("orderedProduct", ordersList);
 
-        return "orders/orderList";
+        return "order/orderListForm";
     }
 
     // 상품 구매하기
@@ -88,7 +88,7 @@ public class OrderController {
     }
 
     @PostMapping("/orderList/delete")
-    public String deleteOrder(Integer ordersId, Integer productId) {
+    public String deleteOrder(Integer ordersId) {
 
         // 로그인 한 사람만
         User principal = (User) session.getAttribute("principal");
@@ -99,13 +99,6 @@ public class OrderController {
         int userId = principal.getUserId();
 
         System.out.println("userId : " + userId);
-
-        // productRepository.findById(productId);
-        // System.out.println("productId : " + productId);
-
-        // 구매 취소했으니 다시 product Qty 업데이트
-        // productRepository.productQtyReupdate(ordersDto);
-        // System.out.println("재고 : " + ordersDto.getOrdersQty());
 
         Orders orders = ordersRepository.findById(ordersId);
         productRepository.productQtyReupdate(orders);
