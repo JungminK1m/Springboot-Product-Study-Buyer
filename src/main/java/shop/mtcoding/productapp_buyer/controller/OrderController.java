@@ -83,7 +83,7 @@ public class OrderController {
          * 누가 구매했는 지 필요하기 때문에 userId도 같이 insert 해야 함
          */
         ordersRepository.insert(ordersDto, userId);
-        return "redirect:/orderList/" + userId;
+        return "redirect:/orderListForm/" + userId;
 
     }
 
