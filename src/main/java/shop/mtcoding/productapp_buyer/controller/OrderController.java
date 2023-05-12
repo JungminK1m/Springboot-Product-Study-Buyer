@@ -106,6 +106,6 @@ public class OrderController {
         // 주문 정보 삭제
         ordersRepository.deleteById(ordersId);
 
-        return "redirect:/orderList/" + userId;
+        return "redirect:/orderListForm/" + userId;
     }
 }
